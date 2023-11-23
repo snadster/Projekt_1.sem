@@ -18,19 +18,15 @@ def make_board() -> Board:
 
 def white_plays(b: Board) -> bool:
     """Check if it is white's turn to play.
-    >>> white_plays(b)
+    >>> white_plays(make_board)
     True
-    >>> white_plays(b)
-    False
     """
     return b.move % 2 == 1
 
 def white(b: Board)-> list[int]:
     """Return a list containing the indices of every white piece.
-    >>> white(b)
+    >>> white(make_board)
     [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-    >>> white(b)
-    []
     """
     white_indices = []
     for i in range(0, len(b.board)):
@@ -40,10 +36,8 @@ def white(b: Board)-> list[int]:
 
 def black(b: Board)-> list[int]:
     """Return a list containing the indices of every black piece.
-    >>> black(b)
+    >>> black(make_board)
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    >>> black(b)
-    []
     """
     black_indices = []
     for i in range(0, len(b.board)):
@@ -53,9 +47,7 @@ def black(b: Board)-> list[int]:
 
 def is_game_over(b: Board) -> bool:
     """Determine whether the game is over.
-    >>> is_game_over(b)
-    True
-    >>> is_game_over(b)
+    >>> is_game_over(make_board)
     False
     """
     res = False
@@ -69,7 +61,7 @@ def is_game_over(b: Board) -> bool:
 
 def copy(b: Board) -> Board:
     """Return a copy of the given board.
-    >>> copy(b)
+    >>> copy(make_board)
     Board(board=[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], move=1)
     """
@@ -92,10 +84,6 @@ def move(m: Move, b: Board) -> None:
 def is_legal(m: Move, b: Board) -> bool:
     """Check if the given move is a legal move on the given
     board.
-    >>> is_legal(m, b)
-    False
-    >>> is_legal(m,b)
-    True
     """
     legal = False
     if 1 <= target(m) <= 25 and b.board[source(m)] != empty_space:
@@ -120,10 +108,7 @@ def row(n:int)->int:
 
 def legal_moves(b: Board) -> list[Move]:
     """Return a list containing all the legal moves
-    from the given board.
-    >>> legal_moves(b)
-    [Move(src=1, trg=3), Move(src=2, trg=4), Move(src=3, trg=1), Move(src=3, trg=5)]
-    """
+    from the given board."""
     moves = []
     for i in range (1, 26):
         for j in range (1, 26):

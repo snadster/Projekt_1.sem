@@ -74,10 +74,8 @@ def move(m: Move, b: Board) -> None:
         b.board[source(m)] = empty_space
         if white_plays(b):
             b.board[target(m)] = white_piece
-            b.board[source(m)] = empty_space
         else:
             b.board[target(m)] = black_piece
-            b.board[source(m)] = empty_space
         if not(4 <= abs(source(m) - target(m)) <= 6):   
             b.board[(source(m) + target(m))//2] = empty_space
             b.board[source(m)] = empty_space
@@ -105,7 +103,8 @@ def is_legal(m: Move, b: Board) -> bool:
                 and source(m) - target(m) == -5):
                     legal = True
         if (row(source(m)) - row(target(m)) in (-2, 0, 2)
-            and b.board[(target(m)+source(m))//2] != b.board[source(m)]):
+            and b.board[(target(m)+source(m))//2] != b.board[source(m)]
+            and b.board[(target(m)+source(m))//2] != empty_space):
             if source(m) - target(m) in (-12, -10, - 8, -2, 2, 8, 10, 12):
                 legal = True
     return legal  

@@ -105,7 +105,11 @@ def is_legal(m: Move, b: Board) -> bool:
         if (row(source(m)) - row(target(m)) in (-2, 0, 2)
             and b.board[(target(m)+source(m))//2] != b.board[source(m)]
             and b.board[(target(m)+source(m))//2] != empty_space):          #Checks whether the requirements for an attack move is fulfilled.
-            if source(m) - target(m) in (-12, -10, - 8, -2, 2, 8, 10, 12):
+            if (source(m) % 2 == 1
+                and source(m) - target(m) in (-12, -10, - 8, -2, 2, 8, 10, 12)):
+                legal = True
+            if (source(m) % 2 == 0
+                and source(m) - target(m) in (-10, -2, 2, 10)):
                 legal = True
     return legal  
 

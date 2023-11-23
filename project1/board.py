@@ -71,12 +71,11 @@ def copy(b: Board) -> Board:
 def move(m: Move, b: Board) -> None:
     """Update the board by simulating the given move."""
     if is_legal(m, b):
+        b.board[source(m)] = empty_space
         if white_plays(b):
             b.board[target(m)] = white_piece
-            b.board[source(m)] = empty_space
         else:
             b.board[target(m)] = black_piece
-            b.board[source(m)] = empty_space
         if not(4 <= abs(source(m) - target(m)) <= 6):
             b.board[(source(m) + target(m))//2] = empty_space
     b.move = b.move + 1

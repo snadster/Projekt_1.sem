@@ -86,14 +86,14 @@ def is_legal(m: Move, b: Board) -> bool:
     board.
     """
     legal = False
-    if 1 <= target(m) <= 25 and b.board[source(m)] != empty_space:
+    if 1 <= target(m) <= 25 and b.board[source(m)] != empty_space and b.board[target(m)] == empty_space:
         if white_plays(b):
             if (row(source(m)) - row(target(m)) == 1 and source(m) - target(m) in (-6, -5, -4)):
                     legal = True
         else:
             if row(source(m)) - row(target(m)) == -1 and source(m) - target(m) in (6, 5, 4):
                 legal = True
-        if row(source(m)) - row(target(m)) in (0, 2):
+        if row(source(m)) - row(target(m)) in (0, 2) and b.board[(target(m)+source(m))//2] != b.board[source(m)]:
             if source(m) - target(m) in (-12, -10, - 8, -2, 2, 8, 10, 12):
                 legal = True
     return legal  

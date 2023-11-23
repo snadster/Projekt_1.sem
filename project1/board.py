@@ -29,6 +29,8 @@ def white(b: Board)-> list[int]:
     """Return a list containing the indices of every white piece.
     >>> white(b)
     [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    >>> white(b)
+    []
     """
     white_indices = []
     for i in range(0, len(b.board)):
@@ -40,6 +42,8 @@ def black(b: Board)-> list[int]:
     """Return a list containing the indices of every black piece.
     >>> black(b)
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    >>> black(b)
+    []
     """
     black_indices = []
     for i in range(0, len(b.board)):

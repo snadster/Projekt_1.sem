@@ -113,7 +113,7 @@ def is_legal(m: Move, b: Board) -> bool:
                 legal = True
     return legal  
 
-def row(n:int)->int:
+def row(n: int) -> int:
     """Returns the row a piece is located on.
     >>> row(5)
     1

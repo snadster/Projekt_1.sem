@@ -86,8 +86,10 @@ def is_legal(m: Move, b: Board) -> bool:
     board.
     """
     legal = False
-    if (1 <= target(m) <= 25 and b.board[source(m)] != empty_space
-        and b.board[target(m)] == empty_space):
+    if (1 <= target(m) <= 25 and (1 <= source(m) <= 25)
+        and b.board[target(m)] == empty_space
+        and ((white_plays(b) and b.board[source(m)] == white_piece)
+             or (not white_plays(b) and b.board[source(m)] == black_piece))):
         if white_plays(b):
             if (source(m) % 2 == 1 and row(source(m)) - row(target(m)) == 1     #Only allows pieces on odd numbered squares to move diagonally.
                 and source(m) - target(m) in (6, 5, 4)):

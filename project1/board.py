@@ -23,7 +23,7 @@ def white_plays(b: Board) -> bool:
     """
     return b.move % 2 == 1
 
-def white(b: Board)-> list[int]:
+def white(b: Board) -> list[int]:
     """Return a list containing the indices of every white piece.
     >>> white(make_board)
     [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
@@ -34,7 +34,7 @@ def white(b: Board)-> list[int]:
             white_indices.append(i)
     return white_indices
 
-def black(b: Board)-> list[int]:
+def black(b: Board) -> list[int]:
     """Return a list containing the indices of every black piece.
     >>> black(make_board)
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -86,7 +86,7 @@ def is_legal(m: Move, b: Board) -> bool:
     board.
     """
     legal = False
-    if (1 <= target(m) <= 25 and (1 <= source(m) <= 25)
+    if ((1 <= target(m) <= 25) and (1 <= source(m) <= 25)
         and b.board[target(m)] == empty_space
         and ((white_plays(b) and b.board[source(m)] == white_piece)
              or (not white_plays(b) and b.board[source(m)] == black_piece))):
@@ -115,7 +115,7 @@ def is_legal(m: Move, b: Board) -> bool:
                 legal = True
     return legal  
 
-def row(n: int) -> int:
+def _row(n: int) -> int:
     """Returns the row a piece is located on.
     >>> row(5)
     1

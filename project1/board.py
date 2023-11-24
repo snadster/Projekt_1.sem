@@ -91,20 +91,20 @@ def is_legal(m: Move, b: Board) -> bool:
         and ((white_plays(b) and b.board[source(m)] == white_piece)
              or (not white_plays(b) and b.board[source(m)] == black_piece))):
         if white_plays(b):
-            if (source(m) % 2 == 1 and row(source(m)) - row(target(m)) == 1     #Only allows pieces on odd numbered squares to move diagonally.
+            if (source(m) % 2 == 1 and _row(source(m)) - _row(target(m)) == 1     #Only allows pieces on odd numbered squares to move diagonally.
                 and source(m) - target(m) in (6, 5, 4)):
                     legal = True
-            if (source(m) % 2 == 0 and row(source(m)) - row(target(m)) == 1
+            if (source(m) % 2 == 0 and _row(source(m)) - _row(target(m)) == 1
                 and source(m) - target(m) == 5):
                     legal = True
         else:
-            if (source(m) % 2 == 1 and row(source(m)) - row(target(m)) == -1
+            if (source(m) % 2 == 1 and _row(source(m)) - _row(target(m)) == -1
                 and source(m) - target(m) in (-6, -5, -4)):
                 legal = True
-            if (source(m) % 2 == 0 and row(source(m)) - row(target(m)) == -1
+            if (source(m) % 2 == 0 and _row(source(m)) - _row(target(m)) == -1
                 and source(m) - target(m) == -5):
                     legal = True
-        if (row(source(m)) - row(target(m)) in (-2, 0, 2)
+        if (_row(source(m)) - _row(target(m)) in (-2, 0, 2)
             and b.board[(target(m)+source(m))//2] != b.board[source(m)]
             and b.board[(target(m)+source(m))//2] != empty_space):          #Checks whether the requirements for an attack move is fulfilled.
             if (source(m) % 2 == 1

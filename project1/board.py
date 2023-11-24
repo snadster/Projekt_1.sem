@@ -51,9 +51,9 @@ def is_game_over(b: Board) -> bool:
     False
     """
     res = False
-    if list(filter(lambda x: x == black_piece, b.board)) == []:
+    if black(b) == []:
         res = True
-    if list(filter(lambda y: y == white_piece, b.board)) == []:
+    if white(b) == []:
         res = True
     if legal_moves(b) == []:
             res = True

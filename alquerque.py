@@ -6,12 +6,16 @@ def start_game() -> None:
           "Thou must choose a side, be brave as you go on, this game of Alquerque may last long!"
           "This quest may become quite fearsome! Upon thy journey the magical machine may ask of you,"
           "enter upon thine board of keys, a single y for yay, or an n for nay!")
-    comp_white = comp_white.lower(input("Does thou wish the magical machine to play white? y or n?"))
-    if comp_white == y:
+    comp_white = input("Does thou wish the magical machine to play white? y or n?").lower()
+    if comp_white == 'y':
         comp_white = True
-    comp_black = comp_black.lower(input("Does thou wish the magical machine to play black? y or n?"))
-    if comp_black == y:
+    else:
+        comp_white = False
+    comp_black = input("Does thou wish the magical machine to play black? y or n?").lower()
+    if comp_black == 'y':
         comp_black = True
+    else:
+        comp_black = False
     if comp_white == False or comp_black == False:
         comp_diff = input("Thine enemy be quick to strike,"
                           "alas you may decide if his bravery is wondrous,"

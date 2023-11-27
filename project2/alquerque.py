@@ -1,6 +1,5 @@
 from board import *
-from move import *
-from minimax import next_move 
+from move import * 
 
 def start_game() -> None:
     """starts the game"""
@@ -28,32 +27,32 @@ def start_game() -> None:
 
 def show_board() -> None:
     """Prints a visual representation of the board"""
-    print("┌───────────────────-─────┐")
-    print("│ ",_convert(1),"─",_convert(2),"─",_convert(3),"─",_convert(4),"─",_convert(5),"│")
-    print("│  ┃ \ ┃ / ┃ \ ┃ / ┃  │")
-    print("│ ",_convert(6),"─",_convert(7),"─",_convert(8),"─",_convert(9),"─",_convert(10),"│")
-    print("│  ┃ / ┃ \ ┃ / ┃ \ ┃  │")
-    print("│ ",_convert(11) ,"─",_convert(12) ,"─",_convert(13) ,"─",_convert(14) ,"─",_convert(15) ,"│") 
-    print("│  ┃ \ ┃ / ┃ \ ┃ / ┃  │")
-    print("│ ",_convert(16) ,"─",_convert(17) ,"─",_convert(18) ,"─",_convert(19) ,"─",_convert(20) ,"│")
-    print("│  ┃ / ┃ \ ┃ / ┃ \ ┃  │")
-    print("│ ",_convert(21) ,"─",_convert(22) ,"─",_convert(23) ,"─",_convert(24) ,"─",_convert(25) ,"│")
-    print("└────────────────────-────┘")
+    print("┌─────────────────────┐")
+    print("│ ",_convert(1),"─",_convert(2),"─",_convert(3),"─",_convert(4),"─",_convert(5)," │")
+    print("│  │ \ │ / │ \ │ / │  │")
+    print("│ ",_convert(6),"─",_convert(7),"─",_convert(8),"─",_convert(9),"─",_convert(10)," │")
+    print("│  │ / │ \ │ / │ \ │  │")
+    print("│ ",_convert(11) ,"─",_convert(12) ,"─",_convert(13) ,"─",_convert(14) ,"─",_convert(15) ," │") 
+    print("│  │ \ │ / │ \ │ / │  │")
+    print("│ ",_convert(16) ,"─",_convert(17) ,"─",_convert(18) ,"─",_convert(19) ,"─",_convert(20) ," │")
+    print("│  │ / │ \ │ / │ \ │  │")
+    print("│ ",_convert(21) ,"─",_convert(22) ,"─",_convert(23) ,"─",_convert(24) ,"─",_convert(25) ," │")
+    print("└─────────────────────┘")
         
 
 def indices_board() -> None:
     """Prints the board with the indeces"""
-    print("┌───────────────-─────────┐")
+    print("┌─────────────────────────┐")
     print("│ ",1," ─",2," ─",3," ─",4," ─",5," │")
-    print("│  ┃ \ ┃ / ┃ \ ┃ / ┃   │")
-    print("│ ",6," ─",7," ─",8," ─",9," ─",10,"│")
-    print("│  ┃ / ┃ \ ┃ / ┃ \ ┃   │")
-    print("│ ",11 ,"─",12 ,"─",13 ,"─",14 ,"─",15,"│") 
-    print("│  ┃ \ ┃ / ┃ \ ┃ / ┃   │")
-    print("│ ",16 ,"─",17 ,"─",18 ,"─",19 ,"─",20,"│")
-    print("│  ┃ / ┃ \ ┃ / ┃ \ ┃   │")
-    print("│ ",21 ,"─",22 ,"─",23 ,"─",24 ,"─",25,"│")
-    print("└──────────────-──────────┘")
+    print("│  │  \ │ /  │ \  │ /  │  │")
+    print("│ ",6," ─",7," ─",8," ─",9,"─",10," │")
+    print("│  │  / │ \  │ /  │ \  │  │")
+    print("│ ",11,"─",12,"─",13,"─",14,"─",15,"│") 
+    print("│  │  \ │ /  │ \  │ /  │  │")
+    print("│ ",16,"─",17,"─",18,"─",19,"─",20,"│")
+    print("│  │  / │ \  │ /  │ \  │  │")
+    print("│ ",21,"─",22,"─",23,"─",24,"─",25,"│")
+    print("└─────────────────────────┘")
 
 def _convert(n: int) -> str:
     """Converts black or white to their respective knight characters"""
@@ -62,4 +61,5 @@ def _convert(n: int) -> str:
     if n in white(b):
         return '\u2658'
     else:
-        return n
+        return 0
+

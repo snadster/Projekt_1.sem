@@ -3,13 +3,12 @@ from move import *
 
 def start_game() -> None:
     """starts the game"""
-    print("Hear ye hear ye!”
+    print("Hear ye hear ye!"
 	  "’Tis thine ancient game, foretold by the prophecy of yore!"
           "Thou shalt journey, brave adventurer, to choose a side;"
-	  "Be brave as you go on, this game of Albuquerque may last long!"
-	  "Thine text may be to small, change this in the Ter-mi-nal.")
+	  "Be brave as you go on, this game of Albuquerque may last long!")
 
-    comp_white = (input(“Does thou wish the magical machine to play white?" 
+    comp_white = (input("Does thou wish the magical machine to play white?" 
 			"a single y for yay, or an n for nay! ").lower())
     if comp_white == 'y':
         comp_white = True
@@ -23,7 +22,7 @@ def start_game() -> None:
     if (comp_white == False or comp_black == False):
         comp_diff = input("Thine enemy be quick to strike,"
                           "alas you may decide; if"
-			  "his bravery is wondrous?”
+			  "his bravery is wondrous?"
                           "or his pants be yellow!"
 			  "Thine decision may be made upon entering,"
                           "to your board of keys,"

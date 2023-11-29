@@ -14,7 +14,7 @@ def start_game() -> None:
     indices_board()
     _ask_player_white()
     _ask_player_black()
-    if (_ask_player_white() or _ask_player_black()):
+    if (_ask_player_white or _ask_player_black):
         _ask_player_diff()
 
 
@@ -24,7 +24,7 @@ def _ask_player_white() -> bool:
 			"a single y for yay, or an n for nay! ").lower())
     if comp_white == 'n':
         comp_white = False
-    if comp_white == 'y':
+    elif comp_white == 'y':
         comp_white = True
     else:
         print("Dear friend, 'twas not a choice. Give it another attempt! ")
@@ -36,7 +36,7 @@ def _ask_player_black() -> bool:
     comp_black = input("Does thou wish the magical machine to play black? y or n? ").lower()
     if comp_black == 'n':
         comp_black = False
-    if comp_black == 'y':
+    elif comp_black == 'y':
         comp_black = True
     else:
         print("Dear friend, 'twas not a choice. Give it another attempt! ")
@@ -97,5 +97,4 @@ def _convert(n: int) -> str:
     else:
         return 0
 
-start_game()
 

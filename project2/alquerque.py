@@ -14,7 +14,7 @@ def start_game() -> None:
     indices_board()
     _ask_player_white()
     _ask_player_black()
-    if (not _ask_player_white() or not _ask_player_black()):
+    if (_ask_player_white() or _ask_player_black()):
         _ask_player_diff()
 
 
@@ -22,38 +22,36 @@ def _ask_player_white() -> bool:
     """Ask the player whether the computer should play white."""
     comp_white = (input("Does thou wish the magical machine to play white? " 
 			"a single y for yay, or an n for nay! ").lower())
-    match comp_white:
-        case 'y':
-            comp_white = True
-        case 'n':
-            comp_white = False
-        case _:
-            print("Dear friend, 'twas not a choice. Give it another attempt! ")
-            _ask_player_white()
+    if comp_white == 'n':
+        comp_white = False
+    if comp_white == 'y':
+        comp_white = True
+    else:
+        print("Dear friend, 'twas not a choice. Give it another attempt! ")
+        _ask_player_white()
     return comp_white
 
 def _ask_player_black() -> bool:
     """Ask the player whether the computer should play black."""
     comp_black = input("Does thou wish the magical machine to play black? y or n? ").lower()
-    match comp_black:
-        case 'y':
-            comp_black = True
-        case 'n':
-            comp_black = False
-        case _:
-            print("Dear friend, 'twas not a choice. Give it another attempt! ")
-            _ask_player_black()
+    if comp_black == 'n':
+        comp_black = False
+    if comp_black == 'y':
+        comp_black = True
+    else:
+        print("Dear friend, 'twas not a choice. Give it another attempt! ")
+        _ask_player_black()
     return comp_black
 
 def _ask_player_diff() -> int:
     """Ask the player how smart the computer should be."""
-    comp_diff = input("Thine enemy be quick to strike, "
+    comp_diff = int(input("Thine enemy be quick to strike, "
                       "alas you may decide; if "
                       "his bravery is wondrous? "
                       "or his pants be yellow! "
                       "Thine decision may be made upon entering, "
                       "to your board of keys, "
-                      "a numeral that exists between 0 and 7! ")
+                      "a numeral that exists between 0 and 7! "))
     if 0 <= comp_diff <= 7:
         return comp_diff
     else:
@@ -98,4 +96,6 @@ def _convert(n: int) -> str:
         return '\u2658'
     else:
         return 0
+
+start_game()
 

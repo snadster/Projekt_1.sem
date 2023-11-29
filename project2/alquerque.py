@@ -1,5 +1,7 @@
 from board import *
-from move import * 
+from move import *
+from minimax import next_move
+
 
 def start_game() -> None:
     """starts the game"""
@@ -7,26 +9,57 @@ def start_game() -> None:
 	  "’Tis thine ancient game, foretold by the prophecy of yore!"
           "Thou shalt journey, brave adventurer, to choose a side;"
 	  "Be brave as you go on, this game of Albuquerque may last long!")
+    print("'Tis the battefield upon which you will find your glory or perhaps your defeat!
+          "Take notice of thine possible moves")
+    indices_board()
+    _ask_player_white()
+    _ask_player_black()
+    if (not _ask_player_white() or not _ask_player_black()):
+        _ask_player_diff()
 
+
+def _ask_player_white() -> bool:
+    """Ask the player whether the computer should play white."""
     comp_white = (input("Does thou wish the magical machine to play white?" 
 			"a single y for yay, or an n for nay! ").lower())
-    if comp_white == 'y':
-        comp_white = True
-    else:
-        comp_white = False
+    match comp_white:
+        case y:
+            comp_white = True
+        case n:
+            comp_white = False
+        case_:
+            print("Dear friend, 'twas not a choice. Give it another attempt!")
+            _ask_player_white()
+    return comp_white
+
+def _ask_player_black() -> bool:
+    """Ask the player whether the computer should play black."""
     comp_black = input("Does thou wish the magical machine to play black? y or n? ").lower()
-    if comp_black == 'y':
-        comp_black = True
+    match comp_black:
+        case y:
+            comp_black = True
+        case n:
+            comp_black = False
+        case _:
+            print("Dear friend, 'twas not a choice. Give it another attempt!")
+            _ask_player_black()
+    return comp_black
+
+def _ask_player_diff() -> int:
+    """Ask the player how smart the computer should be."""
+    comp_diff = input("Thine enemy be quick to strike,"
+                      "alas you may decide; if"
+                      "his bravery is wondrous?"
+                      "or his pants be yellow!"
+                      "Thine decision may be made upon entering,"
+                      "to your board of keys,"
+                      "a numeral that exists between 0 and 7! ")
+    if 0 <= comp_diff <= 7:
+        return comp_diff
     else:
-        comp_black = False
-    if (comp_white == False or comp_black == False):
-        comp_diff = input("Thine enemy be quick to strike,"
-                          "alas you may decide; if"
-			  "his bravery is wondrous?"
-                          "or his pants be yellow!"
-			  "Thine decision may be made upon entering,"
-                          "to your board of keys,"
-			  "a numeral that exists between 0 and 7! ")
+        print("Dear friend, 'twas not a choice. Give it another attempt!")
+        _ask_player_diff()
+
 
 def show_board() -> None:
     """Prints a visual representation of the board"""

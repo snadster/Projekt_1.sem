@@ -64,14 +64,14 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
             else:
                 new_comp_move = next_move(b, comp_diff)
                 move(new_comp_move, b)
-                print("The magical machine moves knight", source(new_comp_move), " to",  target(new_comp_move))             
+                print("The magical machine moves knight", source(new_comp_move), "to field",  target(new_comp_move))             
         else:
             if not comp_black:
                 player_move(comp_white, comp_black, comp_diff)
             else:
                 new_comp_move = next_move(b, comp_diff)
                 move(new_comp_move, b)
-                print("The magical machine moves knight", source(new_comp_move), " to", target(new_comp_move))
+                print("The magical machine moves knight", source(new_comp_move), "to field", target(new_comp_move))
         show_board()
         plays_game(comp_white, comp_black, comp_diff)
 

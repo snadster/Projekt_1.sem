@@ -64,12 +64,12 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
             if not comp_white:
                 player_move()
             else:
-                next_move(b, comp_diff)
+                move(next_move(b, comp_diff), b)
         else:
             if not comp_black:
                 player_move()
             else:
-                next_move(b, comp_diff)
+                move(next_move(b, comp_diff), b)
         show_board()
         plays_game(comp_white, comp_black, comp_diff)
 
@@ -124,3 +124,4 @@ def _convert(n: int) -> str:
     else:
         return 0
 
+start_game()

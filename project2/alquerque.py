@@ -32,7 +32,7 @@ def start_game() -> None:
         start_game()
     if (comp_white or comp_black):
         comp_diff = int(input("Thine enemy be quick to strike, "
-                          “but HOW quick? "
+                          "but HOW quick? "
                           "Thine decision may be made upon entering, "
                           "to your board of keys, "
                           "a numeral that exists between 0 and 7! "))

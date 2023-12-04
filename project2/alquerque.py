@@ -83,7 +83,7 @@ def player_move() -> None:
         move(upcoming_move, b)
     else: 
         print("Thine knight is lacking the bravery necessary for thy move, try another!")
-        player_move(b)
+        plays_game()
 
 
 def show_board() -> None:

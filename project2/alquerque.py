@@ -62,19 +62,19 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
     else:
         if white_plays(b):
             if not comp_white:
-                player_move()
+                player_move(comp_white, comp_black, comp_diff)
             else:
                 move(next_move(b, comp_diff), b)
         else:
             if not comp_black:
-                player_move()
+                player_move(comp_white, comp_black, comp_diff)
             else:
                 move(next_move(b, comp_diff), b)
         show_board()
         plays_game(comp_white, comp_black, comp_diff)
 
 
-def player_move() -> None:
+def player_move(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
     """Ask the player for a move, and update the board by making that move"""
     s = int(input('Which knight shall ride to battle?'))
     t = int(input('Where upon should our knight ride?'))
@@ -83,7 +83,7 @@ def player_move() -> None:
         move(upcoming_move, b)
     else: 
         print("Thine knight is lacking the bravery necessary for thy move, try another!")
-        plays_game()
+        plays_game(comp_white, comp_black, comp_diff)
 
 
 def show_board() -> None:

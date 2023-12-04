@@ -51,10 +51,10 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
         if black(b) == []:
             print("Brave battles were fought and brave battles were lost!"
                   "Here I must announce, that our White Knight has won!")
-        if white(b) == []:
+        elif white(b) == []:
             print("Brave battles were fought and brave battles were lost!"
                   "Here I must announce, that our Black Knight has won!")
-        if legal_moves(b) == []:
+        else:
             print("Battles are strenuous, and strategy flows a plenty."
                   "Alas at this conjecture, our Knights are wounded and weary."
                   "Neither may win and yet, neither may lose. The adventure is over, pick up your boots!"

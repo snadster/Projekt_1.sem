@@ -12,14 +12,6 @@ def start_game() -> None:
     print("'Tis the battefield upon which you will find your glory or perhaps your defeat! "
           "Take notice of thine possible moves ")
     indices_board()
-    _ask_player_white()
-    _ask_player_black()
-    if (_ask_player_white or _ask_player_black):
-        _ask_player_diff()
-
-
-def _ask_player_white() -> bool:
-    """Ask the player whether the computer should play white."""
     comp_white = (input("Does thou wish the magical machine to play white? " 
 			"a single y for yay, or an n for nay! ").lower())
     if comp_white == 'n':
@@ -28,11 +20,7 @@ def _ask_player_white() -> bool:
         comp_white = True
     else:
         print("Dear friend, 'twas not a choice. Give it another attempt! ")
-        _ask_player_white()
-    return comp_white
-
-def _ask_player_black() -> bool:
-    """Ask the player whether the computer should play black."""
+        start_game()
     comp_black = input("Does thou wish the magical machine to play black? y or n? ").lower()
     if comp_black == 'n':
         comp_black = False
@@ -40,23 +28,58 @@ def _ask_player_black() -> bool:
         comp_black = True
     else:
         print("Dear friend, 'twas not a choice. Give it another attempt! ")
-        _ask_player_black()
-    return comp_black
+        start_game()
+    if (comp_white or comp_black):
+        comp_diff = int(input("Thine enemy be quick to strike, "
+                          "alas you may decide; if "
+                          "his bravery is wondrous? "
+                          "or his pants be yellow! "
+                          "Thine decision may be made upon entering, "
+                          "to your board of keys, "
+                          "a numeral that exists between 0 and 7! "))
+        if not (0 <= comp_diff <= 7):
+            print("Dear friend, 'twas not a choice. Give it another attempt! ")
+            start_game()
+    plays_game(comp_white, comp_black, comp_diff)
 
-def _ask_player_diff() -> int:
-    """Ask the player how smart the computer should be."""
-    comp_diff = int(input("Thine enemy be quick to strike, "
-                      "alas you may decide; if "
-                      "his bravery is wondrous? "
-                      "or his pants be yellow! "
-                      "Thine decision may be made upon entering, "
-                      "to your board of keys, "
-                      "a numeral that exists between 0 and 7! "))
-    if 0 <= comp_diff <= 7:
-        return comp_diff
+def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
+    """Plays the game"""
+    if is_game_over(b):
+        if black(b) == []:
+            print("Brave battles were fought and brave battles were lost!"
+                  "Here I must announce, that our White Knight has won!")
+        if white(b) == []:
+            print("Brave battles were fought and brave battles were lost!"
+                  "Here I must announce, that our Black Knight has won!")
+        if legal_moves(b) == []:
+            print("Battles are strenuous, and strategy flows a plenty."
+                  "Alas at this conjecture, our Knights are wounded and weary."
+                  "Neither may win and yet, neither may lose. The adventure is over, pick up your boots!"
+                  "You may not have won, but you did not lose!")
     else:
-        print("Dear friend, 'twas not a choice. Give it another attempt! ")
-        _ask_player_diff()
+        if white_plays(b):
+            if not comp_white:
+                player_move()
+            else:
+                next_move(b, comp_diff)
+        else:
+            if not comp_black:
+                player_move()
+            else:
+                next_move(b, comp_diff)
+        plays_game(comp_white, comp_black, comp_diff)
+
+
+def player_move() -> None:
+    """Ask the player for a move, and update the board by making that move"""
+    s = input('Which knight shall ride to battle?')
+    t = input('Where upon should our knight ride?')
+    upcoming_move = make_move(s, t)
+    if is_legal(upcoming_move):
+        move(upcoming_move, b)
+    else: 
+        print("Thine knight is lacking the bravery necessary for thy move, try another!")
+        player_move(b)
 
 
 def show_board() -> None:
@@ -97,4 +120,4 @@ def _convert(n: int) -> str:
     else:
         return 0
 
-
+start_game()

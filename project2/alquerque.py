@@ -12,6 +12,7 @@ def start_game() -> None:
     print("'Tis the battefield upon which you will find your glory or perhaps your defeat! "
           "Take notice of thine possible moves ")
     indices_board()
+    show_board()
     comp_white = (input("Does thou wish the magical machine to play white? " 
 			"a single y for yay, or an n for nay! ").lower())
     if comp_white == 'n':
@@ -40,7 +41,9 @@ def start_game() -> None:
         if not (0 <= comp_diff <= 7):
             print("Dear friend, 'twas not a choice. Give it another attempt! ")
             start_game()
-    plays_game(comp_white, comp_black, comp_diff)
+        plays_game(comp_white, comp_black, comp_diff)
+    else:
+        plays_game(comp_white, comp_black, 0)
 
 def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
     """Plays the game"""
@@ -67,15 +70,16 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
                 player_move()
             else:
                 next_move(b, comp_diff)
+        show_board()
         plays_game(comp_white, comp_black, comp_diff)
 
 
 def player_move() -> None:
     """Ask the player for a move, and update the board by making that move"""
-    s = input('Which knight shall ride to battle?')
-    t = input('Where upon should our knight ride?')
+    s = int(input('Which knight shall ride to battle?'))
+    t = int(input('Where upon should our knight ride?'))
     upcoming_move = make_move(s, t)
-    if is_legal(upcoming_move):
+    if is_legal(upcoming_move, b):
         move(upcoming_move, b)
     else: 
         print("Thine knight is lacking the bravery necessary for thy move, try another!")
@@ -120,4 +124,3 @@ def _convert(n: int) -> str:
     else:
         return 0
 
-start_game()

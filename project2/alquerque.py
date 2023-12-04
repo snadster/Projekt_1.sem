@@ -6,9 +6,9 @@ from minimax import next_move
 def start_game() -> None:
     """starts the game"""
     print("Hear ye hear ye!"
-	  "’Tis thine ancient game, foretold by the prophecy of yore! "
-          "Thou shalt journey, brave adventurer, to choose a side; "
-	  "Be brave as you go on, this game of Albuquerque may last long! ")
+	  "’Tis thine ancient game… "
+          "Thou shalt journey, proud adventurer; "
+	  "Be brave as you go on! this game of Albuquerque may last long! ")
     print("'Tis the battefield upon which you will find your glory or perhaps your defeat! "
           "Take notice of thine possible moves ")
     indices_board()
@@ -32,9 +32,7 @@ def start_game() -> None:
         start_game()
     if (comp_white or comp_black):
         comp_diff = int(input("Thine enemy be quick to strike, "
-                          "alas you may decide; if "
-                          "his bravery is wondrous? "
-                          "or his pants be yellow! "
+                          “but HOW quick? "
                           "Thine decision may be made upon entering, "
                           "to your board of keys, "
                           "a numeral that exists between 0 and 7! "))
@@ -49,16 +47,16 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
     """Plays the game"""
     if is_game_over(b):
         if black(b) == []:
-            print("Brave battles were fought and brave battles were lost!"
-                  "Here I must announce, that our White Knight has won!")
+            print("Brave battles were fought and brave battles were lost! "
+                  "Here I must announce, that our White Knight has won! ")
         elif white(b) == []:
-            print("Brave battles were fought and brave battles were lost!"
-                  "Here I must announce, that our Black Knight has won!")
+            print("Brave battles were fought and brave battles were lost! "
+                  "Here I must announce, that our Black Knight has won! ")
         else:
-            print("Battles are strenuous, and strategy flows a plenty."
-                  "Alas at this conjecture, our Knights are wounded and weary."
-                  "Neither may win and yet, neither may lose. The adventure is over, pick up your boots!"
-                  "You may not have won, but you did not lose!")
+            print("Battles are strenuous, and strategy flows a plenty. "
+                  "Alas at this conjecture, our Knights are wounded and weary. "
+                  "Neither may win and yet, neither may lose. The adventure is over, pick up your boots! "
+                  "You may not have won, but you did not lose! ")
     else:
         if white_plays(b):
             if not comp_white:
@@ -76,13 +74,13 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
 
 def player_move(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
     """Ask the player for a move, and update the board by making that move"""
-    s = int(input('Which knight shall ride to battle?'))
-    t = int(input('Where upon should our knight ride?'))
+    s = int(input('Which knight shall ride to battle? '))
+    t = int(input('Where upon should our knight ride? '))
     upcoming_move = make_move(s, t)
     if is_legal(upcoming_move, b):
         move(upcoming_move, b)
     else: 
-        print("Thine knight is lacking the bravery necessary for thy move, try another!")
+        print("Thine knight is lacking the bravery necessary for thy move, try another! ")
         plays_game(comp_white, comp_black, comp_diff)
 
 

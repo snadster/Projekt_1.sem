@@ -10,7 +10,8 @@ def start_game() -> None:
           "Thou shalt journey, proud adventurer; "
 	  "Be brave as you go on! this game of Albuquerque may last long! ")
     print("'Tis the battefield upon which you will find your glory or perhaps your defeat! "
-          "Take notice of thine possible moves ")
+          "Take notice of thine possible moves "
+          "and if thou wish to lay down thine arms, enter 0 upon thine board of keys. " )
     indices_board()
     show_board()
     comp_white = (input("Does thou wish the magical machine to play white? " 
@@ -19,6 +20,8 @@ def start_game() -> None:
         comp_white = False
     elif comp_white == 'y':
         comp_white = True
+    elif comp_white == '0':
+        exit()
     else:
         print("Dear friend, 'twas not a choice. Give it another attempt! ")
         start_game()
@@ -27,6 +30,8 @@ def start_game() -> None:
         comp_black = False
     elif comp_black == 'y':
         comp_black = True
+    elif comp_black == '0':
+        exit()
     else:
         print("Dear friend, 'twas not a choice. Give it another attempt! ")
         start_game()
@@ -35,10 +40,12 @@ def start_game() -> None:
                           "but HOW quick? "
                           "Thine decision may be made upon entering, "
                           "to your board of keys, "
-                          "a numeral that exists between 0 and 7! "))
+                          "a numeral that exists between 1 and 7! "))
         if not (0 <= comp_diff <= 7):
             print("Dear friend, 'twas not a choice. Give it another attempt! ")
             start_game()
+        elif comp_diff == 0:
+            quit()
         plays_game(comp_white, comp_black, comp_diff)
     else:
         plays_game(comp_white, comp_black, 0)
@@ -71,7 +78,11 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
 def player_move(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
     """Ask the player for a move, and update the board by making that move"""
     s = int(input('Which knight shall ride to battle? '))
+    if s == 0:
+        quit()
     t = int(input('Where upon should our knight ride? '))
+    if t == 0:
+        quit()
     upcoming_move = make_move(s, t)
     if is_legal(upcoming_move, b):
         move(upcoming_move, b)

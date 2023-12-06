@@ -58,20 +58,12 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
                   "Neither may win and yet, neither may lose. The adventure is over, pick up your boots! "
                   "You may not have won, but you did not lose! ")
     else:
-        if white_plays(b):
-            if not comp_white:
-                player_move(comp_white, comp_black, comp_diff)
-            else:
-                new_comp_move = next_move(b, comp_diff)
-                move(new_comp_move, b)
-                print("The magical machine moves knight", source(new_comp_move), "to field",  target(new_comp_move))             
+        if ((white_plays(b) and comp_white) or (not white_plays(b) and comp_black)):
+            new_comp_move = next_move(b, comp_diff)
+            move(new_comp_move, b)
+            print("The magical machine moves knight", source(new_comp_move),"to field",  target(new_comp_move))
         else:
-            if not comp_black:
-                player_move(comp_white, comp_black, comp_diff)
-            else:
-                new_comp_move = next_move(b, comp_diff)
-                move(new_comp_move, b)
-                print("The magical machine moves knight", source(new_comp_move), "to field", target(new_comp_move))
+            player_move(comp_white, comp_black, comp_diff)
         show_board()
         plays_game(comp_white, comp_black, comp_diff)
 

@@ -43,7 +43,7 @@ def start_game() -> None:
                           "a numeral that exists between 1 and 7! ").lower()
         if comp_diff == 'q':
             quit()
-        elif not (0 <= int(comp_diff) <= 7):
+        elif not (0 < int(comp_diff) <= 7):
             print("Dear friend, 'twas not a choice. Give it another attempt! ")
             start_game()
         plays_game(comp_white, comp_black, int(comp_diff))

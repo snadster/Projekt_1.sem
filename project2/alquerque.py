@@ -42,7 +42,7 @@ def start_game() -> None:
                           "to your board of keys, "
                           "a numeral that exists between 1 and 7! ").lower()
         if comp_diff == 'q':
-            quit()
+            exit()
         elif not (0 < int(comp_diff) <= 7):
             print("Dear friend, 'twas not a choice. Give it another attempt! ")
             start_game()
@@ -78,10 +78,10 @@ def player_move() -> None:
     """Ask the player for a move, and update the board by making that move"""
     s = input('Which knight shall ride to battle? ').lower()
     if s == 'q':
-        quit()
+        exit()
     t = input('Where upon should our knight ride? ').lower()
     if t == 'q':
-        quit()
+        exit()
     upcoming_move = make_move(int(s), int(t))
     if is_legal(upcoming_move, b):
         move(upcoming_move, b)

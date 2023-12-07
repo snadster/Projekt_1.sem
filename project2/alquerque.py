@@ -8,7 +8,7 @@ def start_game() -> None:
     print("Hear ye hear ye!"
 	  "’Tis thine ancient game… "
           "Thou shalt journey, proud adventurer; "
-	  "Be brave as you go on! this game of Albuquerque may last long! ")
+	  "Be brave as you go on! this game of Alquerque may last long! ")
     print("'Tis the battefield upon which you will find your glory or perhaps your defeat! "
           "Take notice of thine possible moves "
           "and if thou wish to lay down thine arms, enter q upon thine board of keys. " )

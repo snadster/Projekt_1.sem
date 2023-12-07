@@ -4,7 +4,7 @@ from minimax import next_move
 
 
 def start_game() -> None:
-    """starts the game"""
+    """Starts the game"""
     print("Hear ye hear ye!"
 	  "’Tis thine ancient game… "
           "Thou shalt journey, proud adventurer; "
@@ -62,20 +62,19 @@ def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
         else:
             print("Battles are strenuous, and strategy flows a plenty. "
                   "Alas at this conjecture, our Knights are wounded and weary. "
-                  "Neither may win and yet, neither may lose. The adventure is over, pick up your boots! "
-                  "You may not have won, but you did not lose! ")
+                  "Neither may win and yet, neither may lose. The adventure is over, pick up your boots! ")
     else:
         if ((white_plays(b) and comp_white) or (not white_plays(b) and comp_black)):
             new_comp_move = next_move(b, comp_diff)
             move(new_comp_move, b)
             print("The magical machine moves knight", source(new_comp_move),"to field",  target(new_comp_move))
         else:
-            player_move(comp_white, comp_black, comp_diff)
+            player_move()
         show_board()
         plays_game(comp_white, comp_black, comp_diff)
 
 
-def player_move(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
+def player_move() -> None:
     """Ask the player for a move, and update the board by making that move"""
     s = input('Which knight shall ride to battle? ').lower()
     if s == 'q':
@@ -88,7 +87,6 @@ def player_move(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
         move(upcoming_move, b)
     else: 
         print("Thine knight is lacking the bravery necessary for thy move, try another! ")
-        plays_game(comp_white, comp_black, comp_diff)
 
 
 def show_board() -> None:

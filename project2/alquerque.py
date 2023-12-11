@@ -91,16 +91,17 @@ def player_move() -> None:
 
 def show_board() -> None:
     """Prints a visual representation of the board"""
+    c = _convert
     print("┌─────────────────────┐")
-    print("│ ",_convert(1),"─",_convert(2),"─",_convert(3),"─",_convert(4),"─",_convert(5)," │")
+    print("│ ",c(1),"─",c(2),"─",c(3),"─",c(4),"─",c(5)," │")
     print("│  │ \ │ / │ \ │ / │  │")
-    print("│ ",_convert(6),"─",_convert(7),"─",_convert(8),"─",_convert(9),"─",_convert(10)," │")
+    print("│ ",c(6),"─",c(7),"─",c(8),"─",c(9),"─",c(10)," │")
     print("│  │ / │ \ │ / │ \ │  │")
-    print("│ ",_convert(11) ,"─",_convert(12) ,"─",_convert(13) ,"─",_convert(14) ,"─",_convert(15) ," │") 
+    print("│ ",c(11) ,"─",c(12) ,"─",c(13) ,"─",c(14) ,"─",c(15) ," │") 
     print("│  │ \ │ / │ \ │ / │  │")
-    print("│ ",_convert(16) ,"─",_convert(17) ,"─",_convert(18) ,"─",_convert(19) ,"─",_convert(20) ," │")
+    print("│ ",c(16) ,"─",c(17) ,"─",c(18) ,"─",c(19) ,"─",c(20) ," │")
     print("│  │ / │ \ │ / │ \ │  │")
-    print("│ ",_convert(21) ,"─",_convert(22) ,"─",_convert(23) ,"─",_convert(24) ,"─",_convert(25) ," │")
+    print("│ ",c(21) ,"─",c(22) ,"─",c(23) ,"─",c(24) ,"─",c(25) ," │")
     print("└─────────────────────┘")
         
 

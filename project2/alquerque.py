@@ -4,12 +4,12 @@ from minimax import next_move
 
 
 def start_game() -> None:
-    """Starts the game"""
+    """Start the game"""
     print("Hear ye hear ye!"
 	  "’Tis thine ancient game… "
           "Thou shalt journey, proud adventurer; "
-	  "Be brave as you go on! this game of Alquerque may last long! ")
-    print("'Tis the battefield upon which you will find your glory or perhaps your defeat! "
+	  "Be brave as you go on! this game of Alquerque may last long! "
+          "'Tis the battefield upon which you will find your glory or perhaps your defeat! "
           "Take notice of thine possible moves "
           "and if thou wish to lay down thine arms, enter q upon thine board of keys. " )
     indices_board()
@@ -51,7 +51,7 @@ def start_game() -> None:
         plays_game(comp_white, comp_black, 0)
 
 def plays_game(comp_white: bool, comp_black: bool, comp_diff: int) -> None:
-    """Plays the game"""
+    """Play the game"""
     if is_game_over(b):
         if black(b) == []:
             print("Brave battles were fought and brave battles were lost! "
@@ -90,7 +90,7 @@ def player_move() -> None:
 
 
 def show_board() -> None:
-    """Prints a visual representation of the board"""
+    """Print a visual representation of the board"""
     c = _convert
     print("┌─────────────────────┐")
     print("│ ",c(1),"─",c(2),"─",c(3),"─",c(4),"─",c(5)," │")
@@ -106,7 +106,7 @@ def show_board() -> None:
         
 
 def indices_board() -> None:
-    """Prints the board with the indices"""
+    """Print the board with the indices"""
     print("┌─────────────────────────┐")
     print("│ ",1," ─",2," ─",3," ─",4," ─",5," │")
     print("│  │  \ │ /  │ \  │ /  │  │")
@@ -120,7 +120,7 @@ def indices_board() -> None:
     print("└─────────────────────────┘")
 
 def _convert(n: int) -> str:
-    """Converts black or white to their respective knight characters"""
+    """Convert black or white to their respective knight characters"""
     if n in black(b):
         return '\u265E'
     if n in white(b):

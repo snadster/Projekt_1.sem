@@ -8,13 +8,13 @@ class Node:
     children: list[Any]
     parent: Any
     data: Board
-    value: int # hvor meget har man lyst til at være i den givne bræt-tilstand
+    value: int #Den heuristiske værdi
     move: Move
     
 def make_tree(r: Node, depth: int) -> None:
     """Make a tree with depth chosen by player."""
     list_of_nodes = [r]
-    while height(r) <= depth + 1:
+    while height(r) <= depth:
         current = r
         for m in legal_moves(current.data):
             list_of_nodes.append(add_child(current, m))

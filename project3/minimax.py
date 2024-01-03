@@ -13,36 +13,26 @@ class Node:
     
 def make_tree(r: Node, depth: int) -> None:
     """Make a tree with depth chosen by player."""
-    current = r
-    for m in legal_moves(current.data):
-        add_child(current, m)
+    list_of_nodes = [r]
+    while height(r) <= depth + 1:
+        current = r
+        for m in legal_moves(current.data):
+            list_of_nodes.append(add_child(current, m))
+        list_of_nodes = (list_of_nodes[1:])
+        current = list_of_nodes[0]
         
-    # kalder make_root()
-    # for hvert lovligt move for nuværende bræt, skal der tilføjes et barn til listen i roden. 
-    # Der skal tilføjes det antal lag som svarer til sværhedsgraden. 
 
-def make_root() -> Node:
-    """Make the root of the tree.
-    >>> make_root()
-    Node(children=[], parent=None,
-    data=Board(board=[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-    move=1), value=0, move=None)
-    """
+def make_root(b: Board) -> Node:
+    """Start a tree."""
     n = Node([], None, copy(b), 0, None)
     return n
 
 def _max(n: int) -> bool:
-    """Determine whether a node is a max node.
-    >>> _max(root)
-    True
-    """
+    """Determine whether a node is a max node"""
     return layer(n) % 2 == 0
 
 def layer(n: Node) -> int:
-    """Return the current layer.
-    >>> layer(root)
-    0
-    """
+    """Return the current layer"""
     current_layer = 0
     current_node = n
     while n.parent != None:
@@ -52,28 +42,32 @@ def layer(n: Node) -> int:
 
 def add_child(p: Node, m: Move) -> None:
     """Add a child to the given parent. The order is irrelevant."""
-    append.p.children(_child(p, m))
+    p.children.append(_child(p, m))
     if _max(p):
-        p.value = max(p.children.value)
+        highest = 0
+        for c in p.children:
+            if c.value > highest:
+                highest = c.value
+        p.value = highest
     else:
-        p.value = min(p.children.value)
+        lowest = 12
+        for c in p.children:
+            if c.value < lowest:
+                lowest = c.value
+        p.value = lowest
 
 def _child(pap: Node, m: Move) -> Node:
-    """Create an entirely new node."""
     new_board = _temp_board(m, pap.data)
     child = Node([], pap, new_board, heu(new_board), m)
     return child
 
 def _temp_board(m: Move, b: Board) -> Board:
-    """Return a temporary board of the present board."""
-    return copy(move(m, copy(b)))
+    c = copy(b)
+    move(m, c)
+    return copy(c)
 
 def heu(b: Board) -> int:
-    """Determine the value of a node. This is the heuristic function.
-    The best value is 12 and the worst 0.
-    >>> heu(b)
-    0
-    """
+    """Determine the value of a node. This is the heuristic function."""
     counter = 0
     if white_plays:
         for opponent in black(b):
@@ -83,21 +77,20 @@ def heu(b: Board) -> int:
             counter = counter + 1
     return 12 - counter
 
-def best_move(tree: Any) -> Move:
-    """Determine the optimal move for the given player by finding the highest or lowest value."""
-    best = max(root.children.value)
-    return best.move
-
 def height(n: Node) -> int:
     """Determine the height of the tree."""
     h = 0
     for node in n.children:
-        h = max(height(Node), h)
-    return h + 1
+        h = max(height(node), h)
+        h = h + 1
+    return h
 
-def next_move(b: Board, depth: int) -> None:
+def next_move(b: Board, depth: int) -> Move:
     """Execute the optimal move for the player."""
-    move(best_move(make_tree(root, depth)))
-
-
-root = make_root()
+    root = make_root(b)
+    make_tree(root, depth)
+    best = root.children[0]
+    for c in root.children:
+        if c.value > best.value:
+            best = c
+    return best.move

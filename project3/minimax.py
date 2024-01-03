@@ -1,6 +1,7 @@
 from board import *
 from move import *
-import Any
+from dataclasses import dataclass
+from typing import Any
 
 @dataclass
 class Node:
@@ -21,16 +22,27 @@ def make_tree(r: Node, depth: int) -> None:
     # Der skal tilføjes det antal lag som svarer til sværhedsgraden. 
 
 def make_root() -> Node:
-    """Start a tree."""
+    """Make the root of the tree.
+    >>> make_root()
+    Node(children=[], parent=None,
+    data=Board(board=[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+    move=1), value=0, move=None)
+    """
     n = Node([], None, copy(b), 0, None)
     return n
 
-def _max(n: int) -> bool:
-    """Determine whether a node is a max node"""
+def _max(layer) -> bool:
+    """Determine whether a node is a max node.
+    >>> _max(layer(root))
+    True
+    """
     return layer % 2 == 0
 
 def layer(n: Node) -> int:
-    """Return the current layer"""
+    """Return the current layer.
+    >>> layer(root)
+    0
+    """
     current_layer = 0
     current_node = n
     while n.parent != None:
@@ -47,15 +59,21 @@ def add_child(p: Node, m: Move) -> None:
         p.value = min(p.children.value)
 
 def _child(pap: Node, m: Move) -> Node:
+    """Create an entirely new node."""
     new_board = _temp_board(m, pap.data)
     child = Node([], pap, new_board, heu(new_board), m)
     return child
 
-def _temp_board(m: move, b: Board) -> Board:
+def _temp_board(m: Move, b: Board) -> Board:
+    """Return a temporary board of the present board."""
     return copy(move(m, copy(b)))
 
 def heu(b: Board) -> int:
-    """Determine the value of a node. This is the heuristic function."""
+    """Determine the value of a node. This is the heuristic function.
+    The best value is 12 and the worst 0.
+    >>> heu(b)
+    0
+    """
     counter = 0
     if white_plays:
         for opponent in black(b):

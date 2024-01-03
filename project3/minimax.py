@@ -31,12 +31,12 @@ def make_root() -> Node:
     n = Node([], None, copy(b), 0, None)
     return n
 
-def _max(layer) -> bool:
+def _max(n: int) -> bool:
     """Determine whether a node is a max node.
-    >>> _max(layer(root))
+    >>> _max(root)
     True
     """
-    return layer % 2 == 0
+    return layer(n) % 2 == 0
 
 def layer(n: Node) -> int:
     """Return the current layer.

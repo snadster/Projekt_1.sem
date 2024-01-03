@@ -20,19 +20,29 @@ def make_tree(r: Node, depth: int) -> None:
             list_of_nodes.append(add_child(current, m))
         list_of_nodes = (list_of_nodes[1:])
         current = list_of_nodes[0]
-        
 
 def make_root(b: Board) -> Node:
-    """Start a tree."""
+    """Make the root of the tree.
+    >>> make_root(b)
+    Node(children=[], parent=None,
+    data=Board(board=[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+    move=1), value=0, move=None)
+    """
     n = Node([], None, copy(b), 0, None)
     return n
 
 def _max(n: int) -> bool:
-    """Determine whether a node is a max node"""
+    """Determine whether a node is a max node.
+    _max(make_root(b))
+    True
+    """
     return layer(n) % 2 == 0
 
 def layer(n: Node) -> int:
-    """Return the current layer"""
+    """Return the current layer for a node.
+    >>> layer(make_root(b))
+    0
+    """
     current_layer = 0
     current_node = n
     while n.parent != None:
@@ -57,17 +67,23 @@ def add_child(p: Node, m: Move) -> None:
         p.value = lowest
 
 def _child(pap: Node, m: Move) -> Node:
+    """Create an entirely new node."""
     new_board = _temp_board(m, pap.data)
     child = Node([], pap, new_board, heu(new_board), m)
     return child
 
 def _temp_board(m: Move, b: Board) -> Board:
+    """Return a temporary board of the present board."""
     c = copy(b)
     move(m, c)
     return copy(c)
 
 def heu(b: Board) -> int:
-    """Determine the value of a node. This is the heuristic function."""
+    """Determine the value of a node. This is the heuristic function.
+    The best value is 12 and the worst 0.
+    >>> heu(b)
+    0
+    """
     counter = 0
     if white_plays:
         for opponent in black(b):
@@ -78,7 +94,10 @@ def heu(b: Board) -> int:
     return 12 - counter
 
 def height(n: Node) -> int:
-    """Determine the height of the tree."""
+    """Determine the height of the tree.
+    >>> height(root)
+    0
+    """
     h = 0
     for node in n.children:
         h = max(height(node), h)

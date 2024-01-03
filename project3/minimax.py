@@ -95,7 +95,7 @@ def heu(b: Board) -> int:
 
 def height(n: Node) -> int:
     """Determine the height of the tree.
-    >>> height(root)
+    >>> height(make_root(b))
     0
     """
     h = 0

@@ -15,11 +15,12 @@ def make_tree(r: Node, depth: int) -> None:
     """Make a tree with depth chosen by player."""
     list_of_nodes = [r]
     while height(r) <= depth:
-        current = r
-        for m in legal_moves(current.data):
-            list_of_nodes.append(add_child(current, m))
-        list_of_nodes = (list_of_nodes[1:])
-        current = list_of_nodes[0]
+        for node in list_of_nodes:
+            for m in legal_moves(node.data):
+                new = add_child(node, m)
+                list_of_nodes.append(new)
+        
+
 
 def make_root(b: Board) -> Node:
     """Make the root of the tree.
@@ -50,9 +51,10 @@ def layer(n: Node) -> int:
         current_layer = current_layer + 1
     return current_layer 
 
-def add_child(p: Node, m: Move) -> None:
+def add_child(p: Node, m: Move) -> Node:
     """Add a child to the given parent. The order is irrelevant."""
-    p.children.append(_child(p, m))
+    new_child = _child(p, m)
+    p.children.append(new_child)
     if _max(p):
         highest = 0
         for c in p.children:
@@ -65,6 +67,7 @@ def add_child(p: Node, m: Move) -> None:
             if c.value < lowest:
                 lowest = c.value
         p.value = lowest
+    return new_child
 
 def _child(pap: Node, m: Move) -> Node:
     """Create an entirely new node."""

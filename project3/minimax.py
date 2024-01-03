@@ -105,7 +105,7 @@ def height(n: Node) -> int:
     return h
 
 def next_move(b: Board, depth: int) -> Move:
-    """Execute the optimal move for the player."""
+    """Find the optimal move for the autoplayer."""
     root = make_root(b)
     make_tree(root, depth)
     best = root.children[0]

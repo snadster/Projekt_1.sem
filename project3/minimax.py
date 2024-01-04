@@ -13,33 +13,14 @@ class Node:
     
 def make_tree(r: Node, depth: int) -> None:
     """Make a tree with depth chosen by player."""
-    if depth >= 1:
-        _make_tree(r)
-    elif depth >= 2:
-        for child in r.children:
-            _make_tree(child)
-    elif depth >= 3:
-        for grandchild in r.children.children:
-            _make_tree(grandchild)
-    elif depth >= 4:
-        for grandchild1 in r.children.children.children:
-            _make_tree(grandchild1)
-    elif depth >= 5:
-        for grandchild2 in r.children.children.children.children:
-            _make_tree(grandchild2)
-    elif depth >= 6:
-        for grandchild3 in r.children.children.children.children.children:
-            _make_tree(grandchild3)
-    elif depth >= 7:
-        for grandchild4 in r.children.children.children.children.children.children:
-            _make_tree(grandchild4)
+    nodes = [r]
+    i = 0
+    while i < len(nodes) and height(r) <= depth:
+        for m in legal_moves(nodes[i].data):
+            new = add_child(nodes[i], m)
+            nodes.append(new)
+        i = i + 1 
         
-def _make_tree(n: Node) -> None:
-    for m in legal_moves(n.data):
-        add_child(n, m) 
-        
-
-
 def make_root(b: Board) -> Node:
     """Make the root of the tree.
     >>> make_root(b)

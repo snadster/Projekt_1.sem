@@ -15,11 +15,12 @@ def make_tree(r: Node, depth: int) -> None:
     """Make a tree with depth chosen by player."""
     nodes = [r]
     i = 0
-    while i < len(nodes) and height(r) <= depth:
+    while i < len(nodes) and layer(nodes[i]) < depth:
+        print(nodes[i].move)
         for m in legal_moves(nodes[i].data):
             new = add_child(nodes[i], m)
             nodes.append(new)
-        i = i + 1 
+        i = i + 1
         
 def make_root(b: Board) -> Node:
     """Make the root of the tree.
@@ -45,8 +46,8 @@ def layer(n: Node) -> int:
     """
     current_layer = 0
     current_node = n
-    while n.parent != None:
-        current_node = n.parent
+    while current_node.parent != None:
+        current_node = current_node.parent
         current_layer = current_layer + 1
     return current_layer 
 
@@ -70,12 +71,12 @@ def add_child(p: Node, m: Move) -> Node:
 
 def _child(pap: Node, m: Move) -> Node:
     """Create an entirely new node."""
-    new_board = _temp_board(m, pap.data)
+    new_board = _move_copy(m, pap.data)
     child = Node([], pap, new_board, heu(new_board), m)
     return child
 
-def _temp_board(m: Move, b: Board) -> Board:
-    """Return a temporary board of the present board."""
+def _move_copy(m: Move, b: Board) -> Board:
+    """."""
     c = copy(b)
     move(m, c)
     return copy(c)
@@ -95,16 +96,6 @@ def heu(b: Board) -> int:
             counter = counter + 1
     return 12 - counter
 
-def height(n: Node) -> int:
-    """Determine the height of the tree.
-    >>> height(make_root(b))
-    0
-    """
-    h = 0
-    for node in n.children:
-        h = max(height(node), h)
-        h = h + 1
-    return h
 
 def next_move(b: Board, depth: int) -> Move:
     """Find the optimal move for the autoplayer."""

@@ -16,7 +16,6 @@ def make_tree(r: Node, depth: int) -> None:
     nodes = [r]
     i = 0
     while i < len(nodes) and layer(nodes[i]) < depth:
-        print(nodes[i].move)
         for m in legal_moves(nodes[i].data):
             new = add_child(nodes[i], m)
             nodes.append(new)
@@ -76,7 +75,7 @@ def _child(pap: Node, m: Move) -> Node:
     return child
 
 def _move_copy(m: Move, b: Board) -> Board:
-    """."""
+    """Return a copy of the current board with the move executed."""
     c = copy(b)
     move(m, c)
     return copy(c)

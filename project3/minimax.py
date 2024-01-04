@@ -20,6 +20,28 @@ def make_tree(r: Node, depth: int) -> None:
             new = add_child(nodes[i], m)
             nodes.append(new)
         i = i + 1
+    update_value(r)
+
+
+def update_value(t: Node) -> None:
+    """Update the value of the nodes according to whether they
+    are min or max nodes.
+    """
+    if t.children != []:
+        for child in t.children:
+            update_value(child)
+        if _max(t):
+            highest = 0
+            for c in t.children:
+                if c.value > highest:
+                    highest = c.value
+            t.value = highest
+        else:
+            lowest = 12
+            for c in t.children:
+                if c.value < lowest:
+                    lowest = c.value
+            t.value = lowest
         
 def make_root(b: Board) -> Node:
     """Make the root of the tree.
@@ -52,30 +74,13 @@ def layer(n: Node) -> int:
 
 def add_child(p: Node, m: Move) -> Node:
     """Add a child to the given parent. The order is irrelevant."""
-    new_child = _child(p, m)
+    new_board = _move_copy(m, p.data)
+    new_child = Node([], p, new_board, heu(new_board), m)
     p.children.append(new_child)
-    if _max(p):
-        highest = 0
-        for c in p.children:
-            if c.value > highest:
-                highest = c.value
-        p.value = highest
-    else:
-        lowest = 12
-        for c in p.children:
-            if c.value < lowest:
-                lowest = c.value
-        p.value = lowest
     return new_child
 
-def _child(pap: Node, m: Move) -> Node:
-    """Create an entirely new node."""
-    new_board = _move_copy(m, pap.data)
-    child = Node([], pap, new_board, heu(new_board), m)
-    return child
-
 def _move_copy(m: Move, b: Board) -> Board:
-    """Return a copy of the current board with the move executed."""
+    """."""
     c = copy(b)
     move(m, c)
     return copy(c)
